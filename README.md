@@ -71,7 +71,7 @@ Here are a bundled tools or single managed tool that are used for complete monit
 #### Metrics
  1. **Prometheus** (*Logging data storage*) + **Prometheus exporters** (*Logging collector tool/agent*) + **Grafana** (*Visualizing tool*)
 
-
+More tools can be viewed in the [CNCF landscape](https://landscape.cncf.io/guide#observability-and-analysis--observability)
 
 # Lab: Setting up (Prometheus + Loki + Grafana)
 We'll prepare a template that runs (Prometheus + Loki + Grafana) bundle - Using docker-compose.yml
