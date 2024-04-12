@@ -1,0 +1,226 @@
+region: us-east-1
+metrics:
+  # Autoscaling
+  - aws_dimensions:
+      - AutoScalingGroupName
+    aws_metric_name: GroupTotalInstances
+    aws_namespace: AWS/AutoScaling
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - AutoScalingGroupName
+    aws_metric_name: GroupMaxSize
+    aws_namespace: AWS/AutoScaling
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - AutoScalingGroupName
+    aws_metric_name: GroupMinSize
+    aws_namespace: AWS/AutoScaling
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - AutoScalingGroupName
+    aws_metric_name: GroupTerminatingInstances
+    aws_namespace: AWS/AutoScaling
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - AutoScalingGroupName
+    aws_metric_name: GroupPendingInstances
+    aws_namespace: AWS/AutoScaling
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - AutoScalingGroupName
+    aws_metric_name: GroupStandbyInstances
+    aws_namespace: AWS/AutoScaling
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - AutoScalingGroupName
+    aws_metric_name: GroupDesiredCapacity
+    aws_namespace: AWS/AutoScaling
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - AutoScalingGroupName
+    aws_metric_name: GroupInServiceInstances
+    aws_namespace: AWS/AutoScaling
+    aws_statistics:
+      - Average
+
+    # EC2
+  - aws_dimensions:
+      - InstanceId
+    aws_metric_name: CPUUtilization
+    aws_namespace: AWS/EC2
+    aws_statistics:
+      - Average
+    aws_tag_select:
+      resource_type_selection: ec2:instance
+      resource_id_dimension: InstanceId
+  - aws_dimensions:
+      - InstanceId
+    aws_metric_name: NetworkIn
+    aws_namespace: AWS/EC2
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - InstanceId
+    aws_metric_name: NetworkOut
+    aws_namespace: AWS/EC2
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - InstanceId
+    aws_metric_name: NetworkPacketsIn
+    aws_namespace: AWS/EC2
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - InstanceId
+    aws_metric_name: NetworkPacketsOut
+    aws_namespace: AWS/EC2
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - InstanceId
+    aws_metric_name: DiskWriteBytes
+    aws_namespace: AWS/EC2
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - InstanceId
+    aws_metric_name: DiskReadBytes
+    aws_namespace: AWS/EC2
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - InstanceId
+    aws_metric_name: CPUCreditBalance
+    aws_namespace: AWS/EC2
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - InstanceId
+    aws_metric_name: CPUCreditUsage
+    aws_namespace: AWS/EC2
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - InstanceId
+    aws_metric_name: StatusCheckFailed
+    aws_namespace: AWS/EC2
+    aws_statistics:
+      - Sum
+  - aws_dimensions:
+      - InstanceId
+    aws_metric_name: StatusCheckFailed_Instance
+    aws_namespace: AWS/EC2
+    aws_statistics:
+      - Sum
+  - aws_dimensions:
+      - InstanceId
+    aws_metric_name: StatusCheckFailed_System
+    aws_namespace: AWS/EC2
+    aws_statistics:
+      - Sum
+
+    # RDS
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: DatabaseConnections
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Maximum
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: FreeStorageSpace
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: FreeableMemory
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: CPUUtilization
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: ReadIOPS
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Sum
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: WriteIOPS
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Sum
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: ReadLatency
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: WriteLatency
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: ReadThroughput
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: WriteThroughput
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: CPUCreditUsage
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: CPUCreditBalance
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: DiskQueueDepth
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: NetworkTransmitThroughput
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: NetworkReceiveThroughput
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Average
+  - aws_dimensions:
+      - DBInstanceIdentifier
+    aws_metric_name: TransactionLogsDiskUsage
+    aws_namespace: AWS/RDS
+    aws_statistics:
+      - Average

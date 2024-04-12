@@ -1,0 +1,86 @@
+# This is a docker-compose image used for monitoring using Grafana with Promethius
+# CloudWatch Namespaces
+# https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html
+
+#Exporters to use for Promethius:
+#https://github.com/prometheus/cloudwatch_exporter
+#https://github.com/Jimdo/aws-health-exporter
+
+# Exporters list
+#https://prometheus.io/docs/instrumenting/exporters/
+
+version: '3'
+
+# Define persistent data volumes for each container
+volumes:
+  grafana-data:
+    driver: local
+  prometheus-data:
+    driver: local
+
+#     
+services:
+  # Images to be used
+  Grafana:
+    # Image - Grafana
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ~/.aws/credentials:/usr/share/grafana/.aws/credentials:ro
+    restart: unless-stopped
+
+    # Image - Prometheus
+  Prometheus:
+    image: ubuntu/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    command: "--config.file=/etc/prometheus/prometheus.yml"
+    volumes:
+      - ./data/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    restart: unless-stopped
+
+    #Exporter images
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command:
+      - '--path.rootfs=/host'
+    network_mode: host
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'
+
+# https://github.com/prometheus/cloudwatch_exporter/tree/master
+# https://hub.docker.com/r/prom/cloudwatch-exporter/
+  cloudwatch-exporter:
+    image: prom/cloudwatch-exporter
+    container_name: cloudwatch-exporter
+    ports:
+      - "9106:9106"
+    volumes:
+      - ./cloudwatch/config.yml:/config/config.yml
+
+
+
+
+
+
+# Attributes
+#     image:
+
+# OR
+
+#     build:
+#      context:
+#        dockerfile: Dockerfile
+
+#     environment:
+#      POSTGRES_DB: mydatabase
+#      POSTGRES_USER: myuser
+#      POSTGRES_PASSWORD: mypassword
